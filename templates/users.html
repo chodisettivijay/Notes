@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block content %}
+    {% for s_user in list_users %}
+   
+        <li><a href="{% url 'records:users-tasks' s_user.id %}">{{s_user.username}}</a></li>
+    {% endfor %}
+{% endblock content %}

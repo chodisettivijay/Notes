@@ -1,0 +1,70 @@
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+  <div class="container">
+    
+    <a class="navbar-brand" href="#">
+      <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-sticky-fill" viewBox="0 0 16 16">
+        <path d="M2.5 1A1.5 1.5 0 0 0 1 2.5v11A1.5 1.5 0 0 0 2.5 15h6.086a1.5 1.5 0 0 0 1.06-.44l4.915-4.914A1.5 1.5 0 0 0 15 8.586V2.5A1.5 1.5 0 0 0 13.5 1h-11zm6 8.5a1 1 0 0 1 1-1h4.396a.25.25 0 0 1 .177.427l-5.146 5.146a.25.25 0 0 1-.427-.177V9.5z"/>
+      </svg>
+    </a>
+    <a class="navbar-brand" href="#">
+      Quick Notes
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ms-auto">
+       
+      {% if user.is_authenticated %}
+      <form class="d-flex" role="search" method="get" action="{% url 'records:search' %}">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="{% url 'records:home' %}">Home</a>
+    </li>
+        {% if user.is_staff %}
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'records:users' %}">Users</a>
+        </li>
+        {% endif %}
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'records:home' %}">Tasks</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Login As : {{user.username}}
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'records:logout' %}">Log out</a></li>
+        </li>
+      {% else %}
+      <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="{% url 'records:home' %}">Home</a>
+    </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'records:register' %}">Sign Up</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'records:login' %}">Login</a>
+        </li>
+         <!--<li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            More
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li>!-->
+      {% endif %}  
+      </ul>
+    </div>
+  </div>
+</nav>

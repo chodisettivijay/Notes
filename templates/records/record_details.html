@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+   
+<center style="margin: 1rem;">
+    <div style="max-width: 45rem;">
+        <div class="card text-bg-dark text-center">
+            <div class="card-header">
+              {{tasks.time_stamp}}
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">{{tasks.Tittle}}</h5>
+              <p>{{tasks.discription|linebreaks}}</p>
+              
+            </div>
+            <div class="card-footer text-body-secondary">
+              <a href="{% url 'records:home' %}" style="text-decoration: none;font-size: large;">Back To Tasks</a>
+            </div>
+          </div>
+    </div>
+</center>
+{% endblock content %}
+
+            
